@@ -1,0 +1,3 @@
+export const FORM_STATE = "BACTERIA_FORM_STATE";
+export const RUNNING_STATE = "RUNNING_STATE";
+export const FINISHED_STATE = "SUCCESS_STATE";
