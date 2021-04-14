@@ -3,6 +3,10 @@ a {
   color: #0366d6;
 }
 
+#root {
+  height: 100%;
+}
+
 code {
   color: #E01A76;
 }

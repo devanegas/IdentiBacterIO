@@ -2,7 +2,9 @@ import * as Constants from "../constants";
 import * as States from "../states";
 
 const initialStudentState = {
-	formInfo: {},
+	formInfo: {
+		groupName: ""
+	},
 	bacteriaId: null,
 	attempts: [],
 };
