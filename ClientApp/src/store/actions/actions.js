@@ -2,12 +2,13 @@ import * as Constants from "../constants";
 
 export const actionCreators = {
   updateFormInfo: formInfo => ({ 
-    type: Constants.FORM_SUBMISSION, formInfo 
+    type: Constants.FORM_SUBMISSION, 
+    payload: formInfo 
   }),
 
   updateCurrentState: currentState => ({
     type: Constants.SET_APP_STATE,
-    currentState
+    payload: currentState
   }),
 
   updateBacteriaId: bacteriaId => ({
