@@ -13,6 +13,6 @@ export default () => (
         <Route exact path='/home' component={Home} />
         {/* <Route path='/counter' component={Counter} />
         <Route path='/fetch-data/:startDateIndex?' component={FetchData} /> */}
-        <Route path='/' component={AppStart} />
+        <Route exact path='/' component={AppStart} />
     </Layout>
 );

@@ -43,6 +43,11 @@ const NavMenu = (props) => {
 							<MenuBookRoundedIcon className={classes.icon} />
 						</IconButton>
 					</Link>
+					<Link to="/home">
+						<IconButton>
+							<MenuBookRoundedIcon className={classes.icon} />
+						</IconButton>
+					</Link>
 				</div>
 			</div>
 		</header>

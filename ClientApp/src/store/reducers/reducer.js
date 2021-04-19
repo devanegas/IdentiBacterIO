@@ -10,7 +10,8 @@ const initialStudentState = {
 };
 
 const initialAppState = {
-	currentState: States.FORM_STATE,
+	// currentState: States.FORM_STATE,
+	currentState: States.RUNNING_STATE,
 };
 
 const studentReducer = (state, action) => {
