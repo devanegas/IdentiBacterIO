@@ -8,7 +8,7 @@ const AppStart = (props) => {
 	const appState = useSelector(getAppState);
 	return (
 		<div style={{ height: "100%" }}>
-			{appState === States.FORM_STATE ? <FormPage /> : <div>nope</div>}
+			{appState === States.FORM_STATE ? <FormPage /> : <div>hi</div>}
 		</div>
 	);
 };

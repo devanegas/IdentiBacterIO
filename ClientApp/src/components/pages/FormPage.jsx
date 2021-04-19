@@ -31,6 +31,8 @@ const useStyles = makeStyles({
 	imageContainer: {
 		width: "50%",
 		position: "relative",
+		display: 'flex',
+		justifyContent: 'center'
 	},
 	image: {
 		height: 400,
@@ -69,7 +71,7 @@ const Home = (props) => {
 			<div className={classes.container}>
 				<Card elevation={4} className={classes.card}>
 					<div className={classes.imageContainer}>
-						<div style={{ position: "absolute", color: "white" }}>
+						<div style={{ position: "absolute", color: "white", fontSize: 32, fontWeight: 100, marginTop: 25 }}>
 							IdentiBacterIO
 						</div>
 						<img src={LeavesImage} className={classes.image} />
