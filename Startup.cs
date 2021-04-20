@@ -1,4 +1,6 @@
 using IdentiBacterIO.Data;
+using IdentiBacterIO.Services;
+using IdentiBacterIO.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,8 @@ namespace IdentiBacterIO
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<ITestCategoryService, TestCategoryService>();
+            services.AddScoped<ITestService, TestService>();
 
             services.AddDbContext<IdentiBacterIOContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));

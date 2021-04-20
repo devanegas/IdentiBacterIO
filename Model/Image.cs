@@ -10,7 +10,7 @@ namespace IdentiBacterIO.Model
         public int Id { get; set; }
         public int BacteriaId { get; set; }
         public int TestId { get; set; }
-        public int TestOptionId { get; set; }
+        public int CorrectTestOptionId { get; set; }
         public String Url { get; set; }
         public String Name { get; set; }
 

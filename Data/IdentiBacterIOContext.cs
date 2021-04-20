@@ -22,8 +22,8 @@ namespace IdentiBacterIO.Data
         {
             //Category has many tests
             modelBuilder.Entity<TestCategory>()
-                       .HasMany(b => b.Tests)
-                       .WithOne();
+                       .HasMany(tc => tc.Tests)
+                       .WithOne(c=>c.TestCategory);
 
             modelBuilder.Entity<Image>()
                         .HasOne(image => image.Bacteria)
@@ -38,7 +38,7 @@ namespace IdentiBacterIO.Data
             modelBuilder.Entity<Image>()
                        .HasOne(image => image.TestOption)
                        .WithMany(option => option.Images)
-                       .HasForeignKey(image => image.TestOptionId);
+                       .HasForeignKey(image => image.CorrectTestOptionId);
         }
         public DbSet<Bacteria> Bacterias { get; set; }
         public DbSet<Test> Tests { get; set; }

@@ -8,7 +8,7 @@ namespace IdentiBacterIO.Model
     public class TestCategory
     {
         public int Id { get; set; }
-        public int Name { get; set; }
+        public String Name { get; set; }
         public List<Test> Tests { get; set; }
     }
 }

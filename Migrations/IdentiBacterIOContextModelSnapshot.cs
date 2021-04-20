@@ -50,13 +50,13 @@ namespace IdentiBacterIO.Migrations
                     b.Property<int>("BacteriaId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("CorrectTestOptionId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.Property<int>("TestId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TestOptionId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Url")
@@ -66,9 +66,9 @@ namespace IdentiBacterIO.Migrations
 
                     b.HasIndex("BacteriaId");
 
-                    b.HasIndex("TestId");
+                    b.HasIndex("CorrectTestOptionId");
 
-                    b.HasIndex("TestOptionId");
+                    b.HasIndex("TestId");
 
                     b.ToTable("Image");
                 });
@@ -82,9 +82,6 @@ namespace IdentiBacterIO.Migrations
 
                     b.Property<string>("Background")
                         .HasColumnType("text");
-
-                    b.Property<int>("CorrectTestOptionId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -109,8 +106,8 @@ namespace IdentiBacterIO.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("integer");
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -145,15 +142,15 @@ namespace IdentiBacterIO.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IdentiBacterIO.Model.Test", "Test")
+                    b.HasOne("IdentiBacterIO.Model.TestOption", "TestOption")
                         .WithMany("Images")
-                        .HasForeignKey("TestId")
+                        .HasForeignKey("CorrectTestOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IdentiBacterIO.Model.TestOption", "TestOption")
+                    b.HasOne("IdentiBacterIO.Model.Test", "Test")
                         .WithMany("Images")
-                        .HasForeignKey("TestOptionId")
+                        .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -166,9 +163,11 @@ namespace IdentiBacterIO.Migrations
 
             modelBuilder.Entity("IdentiBacterIO.Model.Test", b =>
                 {
-                    b.HasOne("IdentiBacterIO.Model.TestCategory", null)
+                    b.HasOne("IdentiBacterIO.Model.TestCategory", "TestCategory")
                         .WithMany("Tests")
                         .HasForeignKey("TestCategoryId");
+
+                    b.Navigation("TestCategory");
                 });
 
             modelBuilder.Entity("IdentiBacterIO.Model.TestOption", b =>

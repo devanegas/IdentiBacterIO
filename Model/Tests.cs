@@ -8,10 +8,10 @@ namespace IdentiBacterIO.Model
     public class Test
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Background { get; set; }
-        public string Procedure { get; set; }
-        public int CorrectTestOptionId { get; set; }
+        public String Name { get; set; }
+        public String Background { get; set; }
+        public String Procedure { get; set; }
+        public TestCategory TestCategory { get; set; }
         public List<TestOption> TestOptions{ get; set; }
 
         public List<Image> Images { get; set; }
