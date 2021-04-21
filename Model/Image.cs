@@ -16,6 +16,6 @@ namespace IdentiBacterIO.Model
 
         public Bacteria Bacteria { get; set; }
         public Test Test { get; set; }
-        public TestOption TestOption { get; set; }
+        public List<int> TestOptionIds { get; set; }
     }
 }

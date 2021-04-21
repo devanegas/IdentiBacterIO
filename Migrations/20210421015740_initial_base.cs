@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IdentiBacterIO.Migrations
@@ -63,8 +64,8 @@ namespace IdentiBacterIO.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TestId = table.Column<int>(type: "integer", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true)
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    TestId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -74,7 +75,7 @@ namespace IdentiBacterIO.Migrations
                         column: x => x.TestId,
                         principalTable: "Tests",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,7 +88,9 @@ namespace IdentiBacterIO.Migrations
                     TestId = table.Column<int>(type: "integer", nullable: false),
                     CorrectTestOptionId = table.Column<int>(type: "integer", nullable: false),
                     Url = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "text", nullable: true)
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    TestOptionIds = table.Column<List<int>>(type: "integer[]", nullable: true),
+                    TestOptionId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,11 +102,11 @@ namespace IdentiBacterIO.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Image_Options_CorrectTestOptionId",
-                        column: x => x.CorrectTestOptionId,
+                        name: "FK_Image_Options_TestOptionId",
+                        column: x => x.TestOptionId,
                         principalTable: "Options",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Image_Tests_TestId",
                         column: x => x.TestId,
@@ -118,14 +121,14 @@ namespace IdentiBacterIO.Migrations
                 column: "BacteriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Image_CorrectTestOptionId",
-                table: "Image",
-                column: "CorrectTestOptionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Image_TestId",
                 table: "Image",
                 column: "TestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Image_TestOptionId",
+                table: "Image",
+                column: "TestOptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Options_TestId",

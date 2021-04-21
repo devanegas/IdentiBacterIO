@@ -35,15 +35,12 @@ namespace IdentiBacterIO.Data
                        .WithMany(test => test.Images)
                        .HasForeignKey(image => image.TestId);
 
-            modelBuilder.Entity<Image>()
-                       .HasOne(image => image.TestOption)
-                       .WithMany(option => option.Images)
-                       .HasForeignKey(image => image.CorrectTestOptionId);
         }
         public DbSet<Bacteria> Bacterias { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<TestOption> Options { get; set; }
         public DbSet<TestCategory> Categories { get; set; }
+        public DbSet<Image> Image { get; set; }
 
     }
 }
