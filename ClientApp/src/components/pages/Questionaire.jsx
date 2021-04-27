@@ -7,11 +7,13 @@ import {
 	InputLabel,
 	Select,
 	MenuItem,
+	CardActionArea,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { getAllBacteria } from "../../api/bacteria";
 import { getAllCategories } from "../../api/categories";
 import { getAllTests } from "../../api/tests";
+import LeavesImage from "../../img/leaves.jpeg";
 import { ContactSupportSharp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +26,7 @@ const useStyles = makeStyles((theme) => ({
 		width: 1000,
 	},
 	card: {
-		padding: 15,
-		margin: 15,
+		margin: '20px 20px 0px 0px'
 	},
 	formControl: {
 		margin: 5,
@@ -34,15 +35,45 @@ const useStyles = makeStyles((theme) => ({
 		background: theme.palette.primary.main,
 		color: theme.palette.primary.contrastText,
 		margin: 4,
-		height: 40
+		height: 40,
+	},
+	option: {
+		marginTop: 20,
+		textAlign: "center",
 	},
 }));
+
+const ClickableOption = (props) => {
+	const classes = useStyles();
+	const isSelected = props.isSelected;
+	const displayText = props.displayText;
+	const onClick = props.onClick;
+	return (
+		<Card
+			onClick={onClick}
+			className={classes.option}
+			style={{ backgroundColor: isSelected ? "#32ce9f" : "white" }}
+		>
+			<CardActionArea style={{ padding: 10, fontWeight: 500, color: isSelected ? 'white' : 'black' }}>
+				{displayText}
+			</CardActionArea>
+		</Card>
+	);
+};
+
+const testOptions = [
+	{ id: 1, description: "A" },
+	{ id: 2, description: "B" },
+	{ id: 3, description: "C" },
+	{ id: 4, description: "D" },
+];
 
 const Questionaire = (props) => {
 	const classes = useStyles();
 	const [bacterias, setBacterias] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [tests, setTests] = useState([]);
+	const [selectedOptionId, setSelectedOptionId] = useState();
 
 	//Selection states
 	const [availableTests, setAvailableTests] = useState([]);
@@ -119,9 +150,7 @@ const Questionaire = (props) => {
 							</Select>
 						</FormControl>
 						<div>
-							<Button className={classes.runButton}>
-								Run
-							</Button>
+							<Button className={classes.runButton}>Run</Button>
 						</div>
 						{/* <FormControl
 							required
@@ -147,11 +176,17 @@ const Questionaire = (props) => {
 					</div>
 				</Card>
 				<div style={{ display: "flex", width: "100%" }}>
+					<div style={{ width: "50%" }} className={classes.card}>
+						{testOptions.map((option, index) => (
+							<ClickableOption
+								isSelected={selectedOptionId === option.id}
+								onClick={() => setSelectedOptionId(option.id)}
+								displayText={option.description}
+							/>
+						))}
+					</div>
 					<Card style={{ width: "50%" }} className={classes.card}>
-						Hi
-					</Card>
-					<Card style={{ width: "50%" }} className={classes.card}>
-						Hi
+						<img src={LeavesImage} />
 					</Card>
 				</div>
 			</div>
